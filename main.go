@@ -182,7 +182,7 @@ func save_result(c *Results) {
 // options
 func init() {
 	r.Files = []File{}
-	directory = flag.String("dir", "./", "directory to search")
+	directory = flag.String("dir", "", "directory to search")
 	directories = flag.Bool("dirs", false, "folders to search separated by comma")
 	exclude = flag.String("exclude", "", "folders to exclude")
 	help = flag.Bool("help", false, "print help")
@@ -223,7 +223,7 @@ func main() {
 		}
 		task()
 		os.Exit(0)
-	} else if string(*directory) == "./"  {
+	} else if *directory != ""   {
 		err := search_all_files(*directory, &p)
 		if err != nil {
 			log.Infof("Error searching all files in %s", *directory)
